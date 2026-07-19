@@ -1,0 +1,314 @@
+/* Імпорт сучасного шрифту Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #5d5fef;    /* Основний синій колір */
+  --bg: #f8f9fc;         /* Світло-сірий фон сторінки */
+  --border: #eef2f6;     /* Колір рамок */
+  --text: #1a202c;       /* Майже чорний для тексту */
+  --gray: #a0aec0;       /* Сірий для дат та іконок */
+  --overdue: #eb4d4b;    /* Червоний для протермінованих задач */
+}
+
+/* Налаштування всього тіла сторінки */
+body {
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Головна біла картка */
+.card {
+  background: white;
+  width: 680px;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+}
+
+/* Заголовок To-Do List */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+header .logo-icon {
+  color: var(--primary);
+  font-size: 32px;
+}
+
+header h1 {
+  font-size: 36px;
+  margin: 0;
+  color: #1a202c;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+/* Рядок введення нової задачі */
+.input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+input {
+  border: 1px solid var(--border);
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: var(--primary);
+}
+
+.main-input {
+  flex: 2;
+}
+
+input[type="date"] {
+  flex: 1;
+  color: #4a5568;
+}
+
+/* Кнопка Add */
+.add-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0 35px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+.add-btn:active {
+  transform: scale(0.96);
+}
+
+/* Контейнери задач */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-container {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  padding: 22px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.task-header:hover {
+  background: #fafbfc;
+}
+
+/* Іконки статусів (квадратики) */
+.status-icon {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  flex-shrink: 0;
+  transition: 0.2s;
+}
+
+.status-icon.full {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.status-icon.progress {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Інформація про задачу */
+.task-info {
+  flex: 1;
+}
+
+.task-title {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.task-title.overdue {
+  color: var(--overdue);
+}
+
+/* Прогрес-бар */
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-track {
+  width: 130px;
+  height: 6px;
+  background: #f1f4f8;
+  border-radius: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+.count {
+  font-size: 12px;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+/* Дати та іконки в рядку головної задачі */
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gray);
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+.task-meta i {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.trash:hover {
+  color: var(--overdue);
+}
+
+/* СЕКЦІЯ ПІДЗАДАЧ */
+.subtasks {
+  background: #f9fbff;
+  padding: 10px 25px 25px 65px;
+  border-top: 1px solid var(--border);
+}
+
+.sub-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f4f8;
+  cursor: pointer;
+}
+
+.sub-item:last-child {
+  border-bottom: none;
+}
+
+/* Чекбокс підзадачі */
+.sub-check {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary);
+  border-radius: 6px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  flex-shrink: 0;
+  transition: 0.2s;
+}
+
+.sub-check.checked {
+  background: var(--primary);
+}
+
+/* Текст підзадачі */
+.sub-text {
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 400;
+  flex: 1; /* Дозволяє тексту займати весь вільний простір */
+}
+
+/* Дата підзадачі - штовхаємо максимально вправо */
+.sub-meta {
+  margin-left: auto; /* Оце штовхає дату вправо */
+  font-size: 13px;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Поле вводу підзадач */
+.sub-input-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--border);
+}
+
+.sub-input-row input {
+  background: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.sub-input-row input[type="text"] {
+  flex: 2;
+}
+
+.sub-input-row input[type="date"] {
+  flex: 1;
+}
+
+.sub-input-row button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Заборона виділення тексту для іконок */
+i {
+  user-select: none;
+}
