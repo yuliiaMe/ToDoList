@@ -1,3 +1,4 @@
+import os 
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -5,7 +6,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:YOUR_PASSWORD@localhost/todo_db'
+local_db = 'mysql+mysqlconnector://root:ТВІЙ_ПАРОЛЬ_ВІД_WORKBENCH@localhost/todo_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', local_db)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Task(db.Model):
@@ -63,4 +66,6 @@ def delete_task(id):
     return jsonify({"success": True})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # Railway сам скаже, на якому порту працювати
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
