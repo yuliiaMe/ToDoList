@@ -13,14 +13,14 @@ function App() {
   useEffect(() => { fetchTasks(); }, []);
 
   const fetchTasks = async () => {
-    const res = await fetch('http://localhost:5000/tasks');
+    const res = await fetch('todolist-production-43cd.up.railway.app');
     const data = await res.json();
     setTasks(data);
   };
 
   const addTask = async () => {
     if (!text) return;
-    await fetch('http://localhost:5000/tasks', {
+    await fetch('todolist-production-43cd.up.railway.app', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text, due_date: date })
@@ -37,7 +37,7 @@ function App() {
         return;
     }
 
-    await fetch(`http://localhost:5000/tasks/${taskId}/subtasks`, {
+    await fetch(`todolist-production-43cd.up.railway.app/${taskId}/subtasks`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: input.text, due_date: input.date })
@@ -56,14 +56,14 @@ function App() {
 
   const toggleSub = async (e, id) => {
     e.stopPropagation(); // ЦЕ ВАЖЛИВО: щоб не закривалася картка
-    await fetch(`http://localhost:5000/subtasks/${id}/toggle`, { method: 'PATCH' });
+    await fetch(`todolist-production-43cd.up.railway.app/${id}/toggle`, { method: 'PATCH' });
     fetchTasks();
   };
 
   const deleteTask = async (e, id) => {
     e.stopPropagation();
     if (!window.confirm("Видалити групу задач?")) return;
-    await fetch(`http://localhost:5000/tasks/${id}`, { method: 'DELETE' });
+    await fetch(`todolist-production-43cd.up.railway.app/${id}`, { method: 'DELETE' });
     fetchTasks();
   };
 
