@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 local_db = 'mysql+mysqlconnector://root:qwerPoiu1010+@localhost/todo_db'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', local_db)
