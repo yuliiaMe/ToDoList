@@ -78,7 +78,7 @@ function App() {
     <div className="card">
       <header>
         <i className="fa-solid fa-clipboard-check logo"></i>
-        <h1>To-Do List</h1>
+        <h1>Список справ</h1>
       </header>
 
       <div className="input-row">
